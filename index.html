@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CONTRACTEO - suivi d'échéances</title>
+  <link rel="stylesheet" href="styles.css" />
+<link 
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
+  crossorigin="anonymous"
+/>
+
+</head>
+
+
+<body>
+
+  <main class="container" id="appRoot">
+
+    <header>
+      <h1>CONTRACTEO<i class="fa-regular fa-clock"></i></h1>
+      <p>suivi d'échéances simplifié</p>
+    </header>
+
+
+
+<section class="dashboard">
+
+  <div class="stat-card danger">
+    <i class="fa-solid fa-triangle-exclamation"></i><p>Alerte</p>
+    <span class="danger-number">0</span>
+  </div>
+
+
+
+  
+  <div class="stat-card vigilance">
+    <i class="fa-solid fa-exclamation"></i><p>Vigilance</p>
+    <span class="vigilance-number">0</span>
+  </div>
+
+  <div class="stat-card courant">
+    <i class="fa-solid fa-check-double"></i><p>Zone verte</p>
+    <span class="courant-number">0</span>
+  </div>
+
+  <div class="stat-card total">
+    <i class="fa-solid fa-list-ul"></i><p>Total</p>
+    <span class="total-contrat">0</span>
+  </div>
+
+</section>
+
+
+    <section class="danger">
+      <h2>Alerte</h2>
+      <div></div>
+    </section>
+
+    <section class="vigilance">
+      <h2>Vigilance</h2>
+      <div></div>
+    </section>
+
+    <section class="courant-list">
+      <h2>Zone verte</h2>
+      <div id="otherContracts" class="contracts-list"></div>
+    </section>
+
+
+
+    <div class="add-container">
+      <button id="addBtn">+</button>
+      <span class="tooltip">Nouvel ajout</span>
+    </div>
+
+  </main>
+
+  
+
+  <!-- Modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-panel" role="document">
+      <h2>Ajouter un contrat</h2>
+      <input id="typeInput" type="text" placeholder="Type de contrat" />
+      <input id="dateInput" type="date" />
+      <input id="preavisInput" type="number" placeholder="Préavis (jours)" />
+      <div class="actions">
+        <button id="cancelBtn" type="button">Annuler</button>
+        <button id="saveBtn" type="button">Valider</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+
+
+</html>
