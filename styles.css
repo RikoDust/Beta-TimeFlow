@@ -166,6 +166,18 @@ margin-bottom: 0.5rem;
     margin-top: 3rem;
 }
 
+.head-courant-list{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+select{
+  font-size: 1rem;
+  border-radius: 5px;
+}
 
 
 
@@ -225,15 +237,89 @@ margin-bottom: 0.5rem;
 
 
 
+
 /* Modal */
-.hidden{display:none !important}
-.modal{
-position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-background:rgba(0,0,0,0.45); z-index:60;
+.hidden {
+  display: none !important;
 }
 
-.modal-panel{
-background:var(--card); width:320px; border-radius:12px; padding:18px; display:flex; gap:10px; flex-direction:column;
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 60;
+}
+
+.modal-panel {
+  background: var(--card, #fff); /* fallback blanc */
+  width: 320px;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* tout centré */
+  justify-content: center;
+  gap: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Titres centrés */
+.modal-panel h2 {
+  margin: 0;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+/* Inputs */
+.modal-panel input {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;             /* sans bordure */
+  border-radius: 6px;       /* coins arrondis */
+  background: #f0f0f0;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* Actions - boutons */
+.actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;  /* boutons centrés */
+}
+
+#cancelBtn {
+  background: #e74c3c; /* rouge */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#cancelBtn:hover {
+  background: #c0392b;
+}
+
+#saveBtn {
+  background: #27ae60; /* vert */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#saveBtn:hover {
+  background: #1e8449;
 }
 
 

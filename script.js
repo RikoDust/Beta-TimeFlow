@@ -1,4 +1,3 @@
-
 const addBtn = document.getElementById('addBtn');
 const modal = document.getElementById('modal');
 const cancelBtn = document.getElementById('cancelBtn');
@@ -50,6 +49,34 @@ function escapeHtml(str) {
   }[s]));
 }
 
+// met à jour la liste déroulante des prestataires
+function updatePrestataireFilterOptions() {
+  const select = document.getElementById('prestataireFilter');
+  if (!select) return;
+
+  // garder la valeur actuelle
+  const currentValue = select.value;
+
+  // récupérer les prestataires uniques
+  const prestataires = [...new Set(contracts.map(c => c.prestataire).filter(Boolean))];
+
+  // reconstruire la liste
+  select.innerHTML = '<option value="">-- Tous les prestataires --</option>';
+  prestataires.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    select.appendChild(opt);
+  });
+
+  // réappliquer la valeur si elle existe encore
+  if (prestataires.includes(currentValue) || currentValue === "") {
+    select.value = currentValue;
+  } else {
+    select.value = "";
+  }
+}
+
 function render() {
   // relire le localStorage (utile si modifié ailleurs)
   contracts = JSON.parse(localStorage.getItem('contracts') || '[]');
@@ -89,7 +116,7 @@ function render() {
   vigilanceNumberEl.textContent = `${vigilance.length}`;
   courantNumberEl.textContent = `${courant.length}`;
 
-  // rendu des listes (chaque liste est déjà triée par échéance par le tri global)
+  // rendu des listes
   function renderList(list, container) {
     container.innerHTML = '';
     if (list.length === 0) {
@@ -104,10 +131,15 @@ function render() {
       row.className = 'contract-row';
       row.innerHTML = `
         <div class="contract-info">
-          <strong>${escapeHtml(c.type)}</strong>
-          &nbsp;|&nbsp; Échéance: ${formatDateFr(c.date)}
-          &nbsp;|&nbsp; Préavis: ${c.preavis} j
-          <span class="preavis-note"> (préavis à: ${formatDateFr(c.preavisDate)})</span>
+          <div>
+            <strong>${escapeHtml(c.type)}</strong>
+            &nbsp;|&nbsp; ${escapeHtml(c.prestataire || '')}
+          </div>
+          <div>
+            Échéance: ${formatDateFr(c.date)}
+            &nbsp;|&nbsp; Préavis: ${c.preavis} j
+            <span class="preavis-note"> (préavis à: ${formatDateFr(c.preavisDate)})</span>
+          </div>
         </div>
         <div class="actions-row">
           <button class="delete-btn" data-id="${c.id}" aria-label="Supprimer contrat"><i class="fa-solid fa-delete-left"></i></button>
@@ -119,7 +151,13 @@ function render() {
 
   renderList(danger, dangerContainer);
   renderList(vigilance, vigilanceContainer);
-  renderList(courant, courantContainer);
+
+  // appliquer le filtre prestataire uniquement sur la zone verte
+  const filterValue = document.getElementById('prestataireFilter')?.value || '';
+  const courantFiltered = filterValue
+    ? courant.filter(c => c.prestataire === filterValue)
+    : courant;
+  renderList(courantFiltered, courantContainer);
 
   // attacher les actions de suppression
   document.querySelectorAll('.delete-btn').forEach(btn => {
@@ -128,11 +166,14 @@ function render() {
       deleteContract(id);
     };
   });
+
+  // mettre à jour la liste des prestataires
+  updatePrestataireFilterOptions();
 }
 
 function deleteContract(id) {
   const confirmDelete = confirm("Voulez-vous vraiment supprimer ce contrat ?");
-  if (!confirmDelete) return; // si l'utilisateur annule, on sort
+  if (!confirmDelete) return;
 
   contracts = contracts.filter(c => c.id !== id);
   saveStorage();
@@ -142,8 +183,8 @@ function deleteContract(id) {
 // --- Modal controls ---
 function openModal() {
   modal.classList.remove('hidden');
-  appRoot.setAttribute('inert', ''); // bloque l’arrière-plan
-  document.getElementById('typeInput').focus();
+  appRoot.setAttribute('inert', '');
+  document.getElementById('prestataireInput').focus();
 }
 
 function closeModal() {
@@ -160,12 +201,13 @@ document.addEventListener('keydown', (e) => {
 
 // --- Save contract ---
 saveBtn.onclick = () => {
+  const prestataire = document.getElementById('prestataireInput').value.trim();
   const type = document.getElementById('typeInput').value.trim();
-  const date = document.getElementById('dateInput').value; // YYYY-MM-DD from input[type=date]
+  const date = document.getElementById('dateInput').value;
   const preavisRaw = document.getElementById('preavisInput').value.trim();
   const preavis = Number(preavisRaw);
 
-  if (!type || !date || preavisRaw === '') {
+  if (!prestataire || !type || !date || preavisRaw === '') {
     alert('Tous les champs sont obligatoires.');
     return;
   }
@@ -176,6 +218,7 @@ saveBtn.onclick = () => {
 
   const newContract = {
     id: Date.now(),
+    prestataire,
     type,
     date,
     preavis: Math.floor(preavis)
@@ -186,11 +229,15 @@ saveBtn.onclick = () => {
   render();
 
   // reset + fermer modal
+  document.getElementById('prestataireInput').value = '';
   document.getElementById('typeInput').value = '';
   document.getElementById('dateInput').value = '';
   document.getElementById('preavisInput').value = '';
   closeModal();
 };
+
+// écouteur du filtre
+document.getElementById('prestataireFilter')?.addEventListener('change', render);
 
 // Init
 render();

@@ -20,7 +20,6 @@
 
     <header>
       <h1>CONTRACTEO<i class="fa-regular fa-clock"></i></h1>
-      <p>suivi d'échéances simplifié</p>
     </header>
 
 
@@ -64,7 +63,12 @@
     </section>
 
     <section class="courant-list">
+      <div class="head-courant-list">
       <h2>Zone verte</h2>
+      <select id="prestataireFilter">
+        <option value="">-- Tous les prestataires --</option>
+      </select>
+      </div>
       <div id="otherContracts" class="contracts-list"></div>
     </section>
 
@@ -82,7 +86,8 @@
   <!-- Modal -->
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-panel" role="document">
-      <h2>Ajouter un contrat</h2>
+      <h2>Ajouter une échéance</h2>
+      <input id="prestataireInput" type="text" placeholder="Prestataire">
       <input id="typeInput" type="text" placeholder="Type de contrat" />
       <input id="dateInput" type="date" />
       <input id="preavisInput" type="number" placeholder="Préavis (jours)" />
