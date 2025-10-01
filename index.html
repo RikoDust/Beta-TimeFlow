@@ -27,7 +27,10 @@
 <section class="dashboard">
 
   <div class="stat-card danger">
-    <i class="fa-solid fa-triangle-exclamation"></i><p>Alerte</p>
+    <div class="title-stat">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <p>Alerte</p>
+    </div>
     <span class="danger-number">0</span>
   </div>
 
@@ -35,21 +38,31 @@
 
   
   <div class="stat-card vigilance">
-    <i class="fa-solid fa-exclamation"></i><p>Vigilance</p>
+    <div class="title-stat">
+        <i class="fa-solid fa-exclamation"></i>
+        <p>Vigilance</p>
+    </div>
     <span class="vigilance-number">0</span>
   </div>
 
   <div class="stat-card courant">
-    <i class="fa-solid fa-check-double"></i><p>Zone verte</p>
+    <div class="title-stat">
+        <i class="fa-solid fa-check-double"></i>
+        <p>Zone verte</p>
+    </div>
     <span class="courant-number">0</span>
   </div>
 
   <div class="stat-card total">
-    <i class="fa-solid fa-list-ul"></i><p>Total</p>
+    <div class="title-stat">
+        <i class="fa-solid fa-list-ul"></i>
+        <p>Total</p>
+    </div>
     <span class="total-contrat">0</span>
   </div>
 
 </section>
+
 
 
     <section class="danger">
@@ -90,7 +103,7 @@
       <input id="prestataireInput" type="text" placeholder="Prestataire">
       <input id="typeInput" type="text" placeholder="Type de contrat" />
       <input id="dateInput" type="date" />
-      <input id="preavisInput" type="number" placeholder="Préavis (jours)" />
+      <input id="preavisInput" type="number" placeholder="Vigilance (jours)" />
       <div class="actions">
         <button id="cancelBtn" type="button">Annuler</button>
         <button id="saveBtn" type="button">Valider</button>

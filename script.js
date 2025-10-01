@@ -9,8 +9,8 @@ const vigilanceNumberEl = document.querySelector('.vigilance-number');
 const courantNumberEl = document.querySelector('.courant-number');
 const totalContractsEl = document.querySelector('.total-contrat');
 
-const dangerContainer = document.querySelector('.danger > div');
-const vigilanceContainer = document.querySelector('.vigilance > div');
+const dangerContainer = document.querySelector('section.danger > div');
+const vigilanceContainer = document.querySelector('section.vigilance > div');
 const courantContainer = document.getElementById('otherContracts');
 
 let contracts = JSON.parse(localStorage.getItem('contracts') || '[]');
@@ -49,47 +49,19 @@ function escapeHtml(str) {
   }[s]));
 }
 
-// met à jour la liste déroulante des prestataires
-function updatePrestataireFilterOptions() {
-  const select = document.getElementById('prestataireFilter');
-  if (!select) return;
-
-  // garder la valeur actuelle
-  const currentValue = select.value;
-
-  // récupérer les prestataires uniques
-  const prestataires = [...new Set(contracts.map(c => c.prestataire).filter(Boolean))];
-
-  // reconstruire la liste
-  select.innerHTML = '<option value="">-- Tous les prestataires --</option>';
-  prestataires.forEach(p => {
-    const opt = document.createElement('option');
-    opt.value = p;
-    opt.textContent = p;
-    select.appendChild(opt);
-  });
-
-  // réappliquer la valeur si elle existe encore
-  if (prestataires.includes(currentValue) || currentValue === "") {
-    select.value = currentValue;
-  } else {
-    select.value = "";
-  }
-}
-
 function render() {
-  // relire le localStorage (utile si modifié ailleurs)
+  // relire le localStorage
   contracts = JSON.parse(localStorage.getItem('contracts') || '[]');
   contracts.forEach(c => c.preavis = Number(c.preavis || 0));
 
-  // tri par date d'échéance (la plus proche d'abord)
+  // tri par date d'échéance
   contracts.sort((a, b) => {
     const [ay, am, ad] = a.date.split('-').map(Number);
     const [by, bm, bd] = b.date.split('-').map(Number);
     return new Date(ay, am - 1, ad) - new Date(by, bm - 1, bd);
   });
 
-  // date du jour au format YYYY-MM-DD (basée sur l'heure locale)
+  // date du jour
   const now = new Date();
   const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 
@@ -98,9 +70,8 @@ function render() {
   const courant = [];
 
   contracts.forEach(c => {
-    const due = c.date; // YYYY-MM-DD
-    const preavisDate = dateMinusDays(due, c.preavis || 0); // date à laquelle démarre le préavis
-    // classification - priorité Danger > Vigilance > Courant
+    const due = c.date; 
+    const preavisDate = dateMinusDays(due, c.preavis || 0);
     if (due <= today) {
       danger.push({ ...c, preavisDate });
     } else if (preavisDate <= today) {
@@ -116,7 +87,7 @@ function render() {
   vigilanceNumberEl.textContent = `${vigilance.length}`;
   courantNumberEl.textContent = `${courant.length}`;
 
-  // rendu des listes
+  // rendu listes
   function renderList(list, container) {
     container.innerHTML = '';
     if (list.length === 0) {
@@ -137,8 +108,8 @@ function render() {
           </div>
           <div>
             Échéance: ${formatDateFr(c.date)}
-            &nbsp;|&nbsp; Préavis: ${c.preavis} j
-            <span class="preavis-note"> (préavis à: ${formatDateFr(c.preavisDate)})</span>
+            &nbsp;|&nbsp; Délai: ${c.preavis} j
+            <span class="preavis-note"> (En vigilance le : ${formatDateFr(c.preavisDate)})</span>
           </div>
         </div>
         <div class="actions-row">
@@ -152,29 +123,28 @@ function render() {
   renderList(danger, dangerContainer);
   renderList(vigilance, vigilanceContainer);
 
-  // appliquer le filtre prestataire uniquement sur la zone verte
+  // filtrage uniquement sur la zone verte
   const filterValue = document.getElementById('prestataireFilter')?.value || '';
   const courantFiltered = filterValue
     ? courant.filter(c => c.prestataire === filterValue)
     : courant;
   renderList(courantFiltered, courantContainer);
 
-  // attacher les actions de suppression
+  // maj de la liste déroulante prestataires uniquement à partir de la zone verte
+  updatePrestataireFilterOptions(courant);
+
+  // suppression
   document.querySelectorAll('.delete-btn').forEach(btn => {
     btn.onclick = () => {
       const id = Number(btn.dataset.id);
       deleteContract(id);
     };
   });
-
-  // mettre à jour la liste des prestataires
-  updatePrestataireFilterOptions();
 }
 
 function deleteContract(id) {
   const confirmDelete = confirm("Voulez-vous vraiment supprimer ce contrat ?");
   if (!confirmDelete) return;
-
   contracts = contracts.filter(c => c.id !== id);
   saveStorage();
   render();
@@ -228,7 +198,7 @@ saveBtn.onclick = () => {
   saveStorage();
   render();
 
-  // reset + fermer modal
+  // reset form
   document.getElementById('prestataireInput').value = '';
   document.getElementById('typeInput').value = '';
   document.getElementById('dateInput').value = '';
@@ -236,7 +206,32 @@ saveBtn.onclick = () => {
   closeModal();
 };
 
-// écouteur du filtre
+
+// --- Mise à jour de la liste déroulante (zone verte uniquement) ---
+function updatePrestataireFilterOptions(courant) {
+  const select = document.getElementById('prestataireFilter');
+  if (!select) return;
+
+  const currentValue = select.value;
+
+  const prestataires = [...new Set(courant.map(c => c.prestataire).filter(Boolean))];
+
+  select.innerHTML = '<option value="">-- Tous les prestataires --</option>';
+  prestataires.forEach(p => {
+    const opt = document.createElement('option');
+    opt.value = p;
+    opt.textContent = p;
+    select.appendChild(opt);
+  });
+
+  if (prestataires.includes(currentValue) || currentValue === "") {
+    select.value = currentValue;
+  } else {
+    select.value = "";
+  }
+}
+
+// écouteur sur le select
 document.getElementById('prestataireFilter')?.addEventListener('change', render);
 
 // Init

@@ -74,16 +74,29 @@ header p{
   min-width: 180px;
 }
 
+.stat-card .danger{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stat-card p{
+  margin-bottom: 0;
+}
+
 .title-stat {
   display: flex;
-  align-items: center; /* aligne icône + texte verticalement */
-  gap: 0.5rem;        /* espace entre icône et texte */
-  margin-bottom: 0.5rem; /* espace entre titre et nombre */
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
+
+
 
 .stat-card i {
   font-size: 1.5rem;
   margin: 0; /* enlève tout margin qui casse l'alignement */
+  margin-right: 0.5rem;
 }
 
 .title-stat p {
@@ -330,3 +343,43 @@ select{
 
 
 
+
+
+
+
+
+
+
+
+/* Version mobile */
+@media (max-width: 768px) {
+
+.stat-card {
+  flex-direction: row;
+}
+
+.stat-header {
+  display: flex;
+  align-items: center;   /* aligne verticalement au milieu */
+  justify-content: center;
+  gap: 0.5rem;           /* espace entre les éléments */
+}
+
+
+
+.stat-card span{
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  }
+
+
+  .danger-number, .vigilance-number, .courant-number, .total-contrat  {
+    margin-left: 0.6rem;
+  }
+
+
+
+
+
+
+}
