@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CONTRACTEO - suivi d'échéances</title>
+  <title>TimeFlow - suivi d'échéances</title>
   <link rel="stylesheet" href="styles.css" />
 <link 
   rel="stylesheet" 
@@ -19,7 +19,7 @@
   <main class="container" id="appRoot">
 
     <header>
-      <h1>SUIVI D'ECHEANCES<i class="fa-regular fa-clock"></i></h1>
+      <h1>TimeFlow<i class="fa-regular fa-clock"></i></h1>
     </header>
 
 
@@ -78,9 +78,8 @@
     <section class="courant-list">
       <div class="head-courant-list">
       <h2>Zone verte</h2>
-      <select id="prestataireFilter">
-        <option value="">-- Tous les prestataires --</option>
-      </select>
+        <input id="typeFilter" list="typesList" placeholder="-- Tous les types d'échéances --">
+        <datalist id="typesList"></datalist>
       </div>
       <div id="otherContracts" class="contracts-list"></div>
     </section>
@@ -94,22 +93,48 @@
 
   </main>
 
+  <footer>
+
+    <div>
+      <p>2025 - Créé et développé par <strong>EmDev</strong></p>
+    </div>
+
+  </footer>
+
+
+
   
 
-  <!-- Modal -->
+  <!-- Modal d'ajout -->
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-panel" role="document">
       <h2>Ajouter une échéance</h2>
-      <input id="prestataireInput" type="text" placeholder="Prestataire">
-      <input id="typeInput" type="text" placeholder="Type de contrat" />
+      <input id="prestataireInput" type="text" placeholder="Nom de l'échéance">
+      <input id="typeInput" type="text" placeholder="Type d'échéance" />
       <input id="dateInput" type="date" />
-      <input id="preavisInput" type="number" placeholder="Vigilance (jours)" />
+      <input id="preavisInput" type="number" placeholder="Délai d'action (jour)" />
       <div class="actions">
         <button id="cancelBtn" type="button">Annuler</button>
         <button id="saveBtn" type="button">Valider</button>
       </div>
     </div>
   </div>
+
+ <!-- Modal de suppression -->
+  <div id="deleteModal" class="hidden modal-overlay">
+    <div class="modal-content">
+      <h2>Supprimer l'échéance</h2>
+      <p>Confirmer l'action ?</p>
+      <div class="modal-actions">
+        <button id="deleteCancelBtn">Annuler</button>
+        <button id="deleteConfirmBtn">Confirmer</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
 
 
 

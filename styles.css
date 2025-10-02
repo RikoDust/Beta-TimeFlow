@@ -166,15 +166,15 @@ margin-bottom: 0.5rem;
 }
 
 .danger .contract-row {
-  background: linear-gradient(to right, rgba(231, 76, 60, 0.7), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(255, 255, 255, 0.7));
 }
 
 .vigilance .contract-row {
-  background: linear-gradient(to right, rgba(243, 156, 18, 0.7), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(243, 156, 18, 0.6), rgba(255, 255, 255, 0.7));
 }
 
 .courant-list .contract-row {
-  background: linear-gradient(to right, rgba(39, 174, 96, 0.7), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(39, 174, 96, 0.6), rgba(255, 255, 255, 0.7));
 }
 
 
@@ -183,11 +183,16 @@ margin-bottom: 0.5rem;
 
 .contract-row button, .top-contract button{
     background-color: #e74c3c;
+    width: 35px;
     color: white;
     border: none;
     border-radius: 4px;
-    padding: 5px;
+    padding: 2px;
     cursor: pointer;
+}
+
+.contract-row button i, .top-contract button i{
+  font-size: 1.1rem;
 }
 
 
@@ -204,12 +209,18 @@ margin-bottom: 0.5rem;
   justify-content: space-between;
 }
 
+/*
 select{
+  font-size: 1.1rem;
+  border-radius: 5px;
+}
+*/
+
+
+.head-courant-list input{
   font-size: 1rem;
   border-radius: 5px;
 }
-
-
 
 
 
@@ -268,6 +279,36 @@ select{
 
 
 
+footer{
+  font-size: 1.1rem;
+  color: #34495e;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Modal */
 .hidden {
   display: none !important;
@@ -322,7 +363,7 @@ select{
   justify-content: center;  /* boutons centrés */
 }
 
-#cancelBtn {
+#cancelBtn, #deleteCancelBtn {
   background: #e74c3c; /* rouge */
   color: #fff;
   border: none;
@@ -337,7 +378,7 @@ select{
   background: #c0392b;
 }
 
-#saveBtn {
+#saveBtn, #deleteConfirmBtn {
   background: #27ae60; /* vert */
   color: #fff;
   border: none;
@@ -354,6 +395,35 @@ select{
 
 
 
+
+
+
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.modal-content p{
+  font-size: 1.2rem;
+}
+
+.modal-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
 
 
 
