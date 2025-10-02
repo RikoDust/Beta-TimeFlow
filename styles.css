@@ -151,8 +151,9 @@ align-items:center;
 font-size:15px;
 margin-bottom: 0.5rem;
 }
+
 .contract-row{
-background:var(--card);
+/*background:var(--card);*/
 padding:10px 14px;
 border-radius:10px;
 box-shadow:0 2px 6px rgba(2,6,23,0.04);
@@ -163,6 +164,22 @@ gap:12px;
 font-size:14px;
 margin-bottom: 0.5rem;
 }
+
+.danger .contract-row {
+  background: linear-gradient(to right, rgba(231, 76, 60, 0.7), rgba(255, 255, 255, 0.7));
+}
+
+.vigilance .contract-row {
+  background: linear-gradient(to right, rgba(243, 156, 18, 0.7), rgba(255, 255, 255, 0.7));
+}
+
+.courant-list .contract-row {
+  background: linear-gradient(to right, rgba(39, 174, 96, 0.7), rgba(255, 255, 255, 0.7));
+}
+
+
+
+
 
 .contract-row button, .top-contract button{
     background-color: #e74c3c;
