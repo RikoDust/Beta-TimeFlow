@@ -78,8 +78,9 @@
     <section class="courant-list">
       <div class="head-courant-list">
       <h2>Zone verte</h2>
-        <input id="typeFilter" list="typesList" placeholder="-- Tous les types d'échéances --">
-        <datalist id="typesList"></datalist>
+      <select id="typeFilter">
+        <option value="">-- Tous les types --</option>
+      </select>
       </div>
       <div id="otherContracts" class="contracts-list"></div>
     </section>
@@ -110,7 +111,8 @@
     <div class="modal-panel" role="document">
       <h2>Ajouter une échéance</h2>
       <input id="prestataireInput" type="text" placeholder="Nom de l'échéance">
-      <input id="typeInput" type="text" placeholder="Type d'échéance" />
+      <input id="typeInput" list="typesList" placeholder="Type d'échéance">
+      <datalist id="typesList"></datalist>
       <input id="dateInput" type="date" />
       <input id="preavisInput" type="number" placeholder="Délai d'action (jour)" />
       <div class="actions">

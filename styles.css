@@ -209,18 +209,12 @@ margin-bottom: 0.5rem;
   justify-content: space-between;
 }
 
-/*
+
 select{
-  font-size: 1.1rem;
-  border-radius: 5px;
-}
-*/
-
-
-.head-courant-list input{
   font-size: 1rem;
   border-radius: 5px;
 }
+
 
 
 

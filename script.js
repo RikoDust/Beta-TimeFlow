@@ -99,7 +99,7 @@ function render() {
       row.className = 'contract-row';
       row.innerHTML = `
         <div class="contract-info">
-          <strong>${escapeHtml(c.type)}</strong> | ${escapeHtml(c.prestataire || '')}
+          <strong>${escapeHtml(c.prestataire || '')}</strong> | ${escapeHtml(c.type)}
           <div>Échéance: ${formatDateFr(c.date)} | Délai d'action: ${c.preavis} j <span class="preavis-note">- En vigilance le: ${formatDateFr(c.preavisDate)}</span></div>
         </div>
         <div class="actions-row">
@@ -118,6 +118,7 @@ function render() {
   const courantFiltered = filterValue ? courant.filter(c => c.type === filterValue) : courant;
   renderList(courantFiltered, courantContainer);
 
+  // Met à jour le filtre et la datalist pour le champ type
   updateTypeFilterOptions(courant);
 
   // suppression
@@ -152,8 +153,15 @@ deleteModal.onclick = e => { if (e.target === deleteModal) closeDeleteModal(); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !deleteModal.classList.contains('hidden')) closeDeleteModal(); });
 
 // --- Modal ajout ---
-function openModal() { modal.classList.remove('hidden'); appRoot.setAttribute('inert', ''); document.getElementById('prestataireInput').focus(); }
-function closeModal() { modal.classList.add('hidden'); appRoot.removeAttribute('inert'); }
+function openModal() { 
+  modal.classList.remove('hidden'); 
+  appRoot.setAttribute('inert', ''); 
+  document.getElementById('prestataireInput').focus(); 
+}
+function closeModal() { 
+  modal.classList.add('hidden'); 
+  appRoot.removeAttribute('inert'); 
+}
 addBtn.onclick = openModal;
 cancelBtn.onclick = closeModal;
 modal.onclick = e => { if (e.target === modal) closeModal(); };
@@ -178,15 +186,40 @@ saveBtn.onclick = () => {
   closeModal();
 };
 
-// --- Mise à jour filtre type ---
+// --- Mise à jour filtre type + datalist pour ajout ---
 function updateTypeFilterOptions(courant) {
+  // --- Filtre de la zone verte ---
   const select = document.getElementById('typeFilter');
-  if (!select) return;
-  const currentValue = select.value;
-  const types = [...new Set(courant.map(c => c.type).filter(Boolean))];
-  select.innerHTML = '<option value="">-- Tous les types --</option>';
-  types.forEach(t => select.appendChild(Object.assign(document.createElement('option'), { value: t, textContent: t })));
-  if (!types.includes(currentValue)) select.value = '';
+  if (select) {
+    const currentValue = select.value;
+    const types = [...new Set(courant.map(c => c.type).filter(Boolean))];
+
+    select.innerHTML = '<option value="">-- Tous les types --</option>';
+    types.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      opt.textContent = t;
+      select.appendChild(opt);
+    });
+
+    if (!types.includes(currentValue)) {
+      select.value = '';
+    } else {
+      select.value = currentValue;
+    }
+  }
+
+  // --- Datalist pour le champ "type" dans la modale ---
+  const datalist = document.getElementById('typesList');
+  if (datalist) {
+    datalist.innerHTML = '';
+    const types = [...new Set(courant.map(c => c.type).filter(Boolean))];
+    types.forEach(t => {
+      const opt = document.createElement('option');
+      opt.value = t;
+      datalist.appendChild(opt);
+    });
+  }
 }
 
 document.getElementById('typeFilter').addEventListener('change', render);
