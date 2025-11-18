@@ -139,8 +139,68 @@ header p{
 
 
 
+.dateAndAdd{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  padding: 0 4rem;
+  margin-bottom: 2rem;
+}
 
+.add-container {
+  position: relative;
+  display: inline-block;
+}
 
+/* bouton existant */
+#addBtn {
+  /*margin-left: 3rem;
+  margin-top: 3rem; */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+  transition: transform 0.1s;
+}
+#addBtn:active {
+  transform: scale(.96);
+}
+
+/* tooltip */
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%; /* à droite du bouton */
+  transform: translateY(-50%) translateX(10px); /* légèrement décalé */
+  background: #34495e;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Affiche le tooltip uniquement au hover du bouton */
+#addBtn:hover + .tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+#date-container{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #34495e;
+}
 
 
 
@@ -244,52 +304,7 @@ select{
 .small-muted{color:var(--muted); font-size:13px}
 
 
-.add-container {
-  position: relative;
-  display: inline-block;
-}
 
-/* bouton existant */
-#addBtn {
-  margin-left: 3rem;
-  margin-top: 3rem;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  border: none;
-  background: var(--accent);
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
-  transition: transform 0.1s;
-}
-#addBtn:active {
-  transform: scale(.96);
-}
-
-/* tooltip */
-.tooltip {
-  position: absolute;
-  top: 50%;
-  left: 100%; /* à droite du bouton */
-  transform: translateY(-50%) translateX(10px); /* légèrement décalé */
-  background: #34495e;
-  color: white;
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.3rem;
-  font-size: 0.9rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s, transform 0.3s;
-}
-
-/* Affiche le tooltip uniquement au hover du bouton */
-#addBtn:hover + .tooltip {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-}
 
 
 
@@ -469,7 +484,7 @@ footer a{
 
 
 
-/* Version mobile */
+/**** Version mobile ****/
 @media (max-width: 768px) {
 
 .stat-card {
@@ -478,11 +493,10 @@ footer a{
 
 .stat-header {
   display: flex;
-  align-items: center;   /* aligne verticalement au milieu */
+  align-items: center; 
   justify-content: center;
-  gap: 0.5rem;           /* espace entre les éléments */
+  gap: 0.5rem; 
 }
-
 
 
 .stat-card span{
@@ -490,14 +504,17 @@ footer a{
   margin-bottom: 8px;
   }
 
-
   .danger-number, .vigilance-number, .courant-number, .total-contrat  {
     margin-left: 0.6rem;
   }
 
+  .dateAndAdd{
+  padding: 0 0.5rem;
+}
 
-
-
+#addBtn {
+  margin-right: 1rem;
+}
 
 
 }
