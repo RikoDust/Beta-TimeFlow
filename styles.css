@@ -1,5 +1,4 @@
 :root{
---bg:#f3f4f6;
 --card:#ffffff;
 --accent:#34495e;
 --muted:#6b7280;
@@ -10,7 +9,7 @@
 body{
 margin:0;
 font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-background:var(--bg);
+background:#e5e7eb ;
 color:#111827;
 -webkit-font-smoothing:antialiased;
 -moz-osx-font-smoothing:grayscale;
@@ -46,10 +45,18 @@ header h1 i {
   font-size: 2.5rem; 
 }
 
+header h2{
+  color: #34495e;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
 header p{
     font-size: 1.1rem;
     margin: 0;
 }
+
+
 
 
 .dashboard {
@@ -112,9 +119,8 @@ header p{
   transition: transform 150ms ease, box-shadow 150ms ease;
 }
 .stat-card.active {
-  transform: translateY(-10px);
-  /* la box-shadow dynamique est appliquée en JS ;
-     cette règle garantit la transition et le déplacement */
+  transform: translateY(-10px) scale(1.02) ;
+
 }
 
 
@@ -317,8 +323,10 @@ footer{
   justify-content: center;
   align-items: center;
   /*text-align: center;*/
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding-bottom: 3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .contact-footer{
@@ -487,8 +495,12 @@ footer a{
 /**** Version mobile ****/
 @media (max-width: 768px) {
 
+.dashboard {
+  gap: 1.2rem;
+}
 .stat-card {
   flex-direction: row;
+  padding: 10px;
 }
 
 .stat-header {

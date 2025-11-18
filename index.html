@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+
   <title>TimeFlow - suivi d'échéances</title>
+
   <link rel="stylesheet" href="styles.css" />
-<link 
-  rel="stylesheet" 
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" 
-  crossorigin="anonymous"
-/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous"/>
 
 </head>
 
@@ -20,6 +19,7 @@
 
     <header>
       <h1><i class="fa-regular fa-clock"></i>TimeFlow</h1>
+      <h2>Suivi d'échéances</h2>
     </header>
 
 
@@ -86,7 +86,7 @@
     <section class="courant-list">
       <div class="head-courant-list">
       <h2>Zone verte</h2>
-      <select id="typeFilter">
+      <select id="typeFilter" aria-label="Filtrer par type d'échéance">
         <option value="">-- Tous les types --</option>
       </select>
       </div>
@@ -111,6 +111,7 @@
     </div>
 
   </footer>
+
 
 
 
