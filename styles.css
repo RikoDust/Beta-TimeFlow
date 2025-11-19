@@ -1,7 +1,6 @@
 :root{
 --card:#ffffff;
 --accent:#34495e;
---muted:#6b7280;
 }
 
 
@@ -252,16 +251,21 @@ font-size:14px;
 margin-bottom: 0.5rem;
 }
 
+.contract-row .secondary {
+  color: #111827;
+}
+
+
 .danger .contract-row {
-  background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(229, 231, 235, 1));
 }
 
 .vigilance .contract-row {
-  background: linear-gradient(to right, rgba(243, 156, 18, 0.6), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(243, 156, 18, 0.6), rgba(229, 231, 235, 1));
 }
 
 .courant-list .contract-row {
-  background: linear-gradient(to right, rgba(39, 174, 96, 0.6), rgba(255, 255, 255, 0.7));
+  background: linear-gradient(to right, rgba(39, 174, 96, 0.6), rgba(229, 231, 235, 1));
 }
 
 
