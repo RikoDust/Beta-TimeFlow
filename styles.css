@@ -1,8 +1,9 @@
+/*** GENERAL ***/
+
 :root{
 --card:#ffffff;
 --accent:#34495e;
 }
-
 
 *{box-sizing:border-box}
 body{
@@ -14,13 +15,16 @@ color:#111827;
 -moz-osx-font-smoothing:grayscale;
 }
 
-
-
 .container{
 max-width:900px;
 margin:32px auto;
 padding:0 16px;
 }
+
+
+
+
+/*** HEADER ***/
 
 header{
     display: flex;
@@ -58,9 +62,13 @@ header p{
 
 
 
+
+
+/*** DASHBOARD ***/
+
 .dashboard {
   display: flex;
-  flex-wrap: wrap; /* permet le retour à la ligne */
+  flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 3rem;
@@ -83,8 +91,6 @@ header p{
   cursor: pointer;
 }
 
-
-
 .stat-card p{
   margin-bottom: 0;
 }
@@ -96,11 +102,9 @@ header p{
   margin-bottom: 0.5rem;
 }
 
-
-
 .stat-card i {
   font-size: 1.5rem;
-  margin: 0; /* enlève tout margin qui casse l'alignement */
+  margin: 0;
   margin-right: 0.5rem;
 }
 
@@ -109,9 +113,8 @@ header p{
 }
 
 .stat-card span {
-  font-size: 2rem; /* plus visible */
+  font-size: 2rem;
 }
-
 
 /* effet visuel quand une stat-card est active */
 .stat-card {
@@ -121,10 +124,6 @@ header p{
   transform: translateY(-10px) scale(1.02) ;
 
 }
-
-
-
-
 
 /* Couleurs personnalisées */
 .stat-card.danger {
@@ -144,6 +143,12 @@ header p{
 
 
 
+
+
+
+
+/*** DATE ET BOUTON AJOUT ***/
+
 .dateAndAdd{
   display: flex;
   flex-direction: row;
@@ -159,10 +164,8 @@ header p{
   display: inline-block;
 }
 
-/* bouton existant */
+/* bouton d'ajout */
 #addBtn {
-  /*margin-left: 3rem;
-  margin-top: 3rem; */
   width: 56px;
   height: 56px;
   border-radius: 50%;
@@ -182,8 +185,8 @@ header p{
 .tooltip {
   position: absolute;
   top: 50%;
-  left: 100%; /* à droite du bouton */
-  transform: translateY(-50%) translateX(10px); /* légèrement décalé */
+  left: 100%;
+  transform: translateY(-50%) translateX(10px);
   background: #34495e;
   color: white;
   padding: 0.3rem 0.6rem;
@@ -213,48 +216,66 @@ header p{
 
 
 
-.danger h2{
-    color: #e74c3c;
+
+
+/*** LIST DES ECHEANCES ***/
+
+.danger h2 {
+  color: #e74c3c;
 }
-.vigilance h2{
-    color: #f39c12;
+.vigilance h2 {
+  color: #f39c12;
 }
-.courant-list h2{
-    color: #27ae60;
-}
-
-
-
-
-.top-contract{
-background:var(--card);
-padding:12px 16px;
-border-radius:10px;
-box-shadow:0 4px 10px rgba(2,6,23,0.06);
-display:flex;
-justify-content:space-between;
-align-items:center;
-font-size:15px;
-margin-bottom: 0.5rem;
+.courant-list h2 {
+  color: #27ae60;
 }
 
-.contract-row{
-/*background:var(--card);*/
-padding:10px 14px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(2,6,23,0.04);
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:12px;
-font-size:14px;
-margin-bottom: 0.5rem;
+/* En-têtes uniformes pour toutes les sections */
+.section-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* Conteneur pour le select + bouton dans Zone verte */
+.filter-controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+
+
+
+.top-contract {
+  background: var(--card);
+  padding: 12px 16px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(2, 6, 23, 0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  margin-bottom: 0.5rem;
+}
+
+.contract-row {
+  padding: 10px 14px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
 }
 
 .contract-row .secondary {
   color: #111827;
 }
-
 
 .danger .contract-row {
   background: linear-gradient(to right, rgba(231, 76, 60, 0.6), rgba(229, 231, 235, 1));
@@ -272,53 +293,214 @@ margin-bottom: 0.5rem;
 
 
 
-.contract-row button, .top-contract button{
-    background-color: #e74c3c;
-    width: 35px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 2px;
-    cursor: pointer;
+
+
+/** == SWITCH BUTTON == **/
+:root {
+  --switch-width: 50px;
+  --switch-height: 26px;
+  --thumb-size: 20px;
+  --gap: 3px;
+  --bg-off: #bdc3c7;
+  --bg-on: #34495e;
+  --thumb-off: #34495e;
+  --thumb-on: #ffffff;
+  --icon-off: #34495e;
+  --icon-on: #34495e;
 }
 
-.contract-row button i, .top-contract button i{
+.switch {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+}
+
+.switch__track {
+  width: var(--switch-width);
+  height: var(--switch-height);
+  background: var(--bg-off);
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.switch__thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--gap);
+  transform: translateY(-50%);
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background: var(--thumb-off);
+  border-radius: 50%;
+  transition: left 0.2s ease, background 0.2s ease;
+}
+
+/* ÉTAT ON */
+.switch[aria-checked="true"] .switch__track {
+  background: var(--bg-on);
+}
+
+.switch[aria-checked="true"] .switch__thumb {
+  left: calc(var(--switch-width) - var(--thumb-size) - var(--gap));
+  background: var(--thumb-on);
+}
+
+/* ==== ICÔNES ==== */
+.icon-left {
+  color: var(--icon-off);
+  font-size: 22px;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+.icon-right {
+  color: var(--icon-on);
+  font-size: 22px;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+
+/* OFF → gauche visible (calendrier), droite faible */
+.switch[aria-checked="false"] .icon-left {
+  opacity: 1;
+}
+
+.switch[aria-checked="false"] .icon-right {
+  opacity: 0.4;
+}
+
+/* ON → droite forte (liste numérotée), gauche faible */
+.switch[aria-checked="true"] .icon-left {
+  opacity: 0.4;
+}
+
+.switch[aria-checked="true"] .icon-right {
+  opacity: 1;
+}
+
+/* ==== COULEURS SPÉCIFIQUES PAR LISTE ==== */
+
+/* Switch dans la section ALERTE (rouge) */
+.danger .switch[aria-checked="true"] .switch__track {
+  background: #e74c3c;
+}
+
+.danger .switch[aria-checked="true"] .icon-right {
+  color: #e74c3c;
+}
+
+/* Switch dans la section VIGILANCE (orange) */
+.vigilance .switch[aria-checked="true"] .switch__track {
+  background: #f39c12;
+}
+
+.vigilance .switch[aria-checked="true"] .icon-right {
+  color: #f39c12;
+}
+
+/* Switch dans la section ZONE VERTE (vert) */
+.courant-list .switch[aria-checked="true"] .switch__track {
+  background: #27ae60;
+}
+
+.courant-list .switch[aria-checked="true"] .icon-right {
+  color: #27ae60;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*** LIGNES ECHEANCES ***/
+
+.contract-row button,
+.top-contract button {
+  background-color: #e74c3c;
+  width: 35px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.contract-row button i,
+.top-contract button i {
   font-size: 1.1rem;
 }
 
-
-.courant-list{
-    border-top: 1px solid #34495e;
-    margin-top: 3rem;
+.courant-list {
+  margin-top: 3rem;
+  padding-top: 1rem;
 }
 
-.head-courant-list{
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-select{
-  font-size: 1rem;
+select {
+  font-size: 0.95rem;
   border-radius: 5px;
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+}
+
+.contract-left {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.contract-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.priority-tag{
+  color: #111827;
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+
+.small-muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+
+.filter-controls{
+  gap: 4rem;
+}
+
+
+/* Suppression de l'ancien style head-courant-list si nécessaire */
+.head-courant-list {
+  display: none;
 }
 
 
 
 
-.contract-left{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-.contract-right{display:flex; gap:8px; align-items:center}
-.small-muted{color:var(--muted); font-size:13px}
+
+.vigilanceContracts, .dangerContracts, .contracts-list{
+  margin-bottom: 4rem;
+}
 
 
 
 
-
-
-
+/*** FOOTER ***/
 footer{
   font-size: 1.1rem;
   color: #34495e;
@@ -326,7 +508,6 @@ footer{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /*text-align: center;*/
   margin-top: 2rem;
   padding-bottom: 3rem;
   padding-left: 1rem;
@@ -337,7 +518,6 @@ footer{
   text-align: center;
   margin-bottom: 1rem;
 }
-
 
 footer p{
   margin: 0.5rem;
@@ -361,13 +541,7 @@ footer a{
 
 
 
-
-
-
-
-
-
-/* Modal */
+/*** MODAL ***/
 .hidden {
   display: none !important;
 }
@@ -383,13 +557,13 @@ footer a{
 }
 
 .modal-panel {
-  background: var(--card, #fff); /* fallback blanc */
+  background: var(--card, #fff);
   width: 320px;
   border-radius: 12px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;       /* tout centré */
+  align-items: center;
   justify-content: center;
   gap: 15px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -406,8 +580,8 @@ footer a{
 .modal-panel input {
   width: 100%;
   padding: 8px 10px;
-  border: none;             /* sans bordure */
-  border-radius: 6px;       /* coins arrondis */
+  border: none; 
+  border-radius: 6px;
   background: #f0f0f0;
   font-size: 1rem;
   box-sizing: border-box;
@@ -418,11 +592,11 @@ footer a{
   display: flex;
   gap: 10px;
   width: 100%;
-  justify-content: center;  /* boutons centrés */
+  justify-content: center;
 }
 
 #cancelBtn, #deleteCancelBtn {
-  background: #e74c3c; /* rouge */
+  background: #e74c3c;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -437,7 +611,7 @@ footer a{
 }
 
 #saveBtn, #deleteConfirmBtn {
-  background: #27ae60; /* vert */
+  background: #27ae60;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -451,10 +625,14 @@ footer a{
   background: #1e8449;
 }
 
-
-
-
-
+#priorityInput {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 6px;
+  background: #f0f0f0;
+  font-size: 1rem;
+}
 
 
 .modal-overlay {
@@ -496,7 +674,7 @@ footer a{
 
 
 
-/**** Version mobile ****/
+/****** VERSION MOBILE ******/
 @media (max-width: 768px) {
 
 .dashboard {
@@ -520,17 +698,51 @@ footer a{
   margin-bottom: 8px;
   }
 
+  .courant-list h2{
+    margin-bottom: 0;
+  }
+
+
   .danger-number, .vigilance-number, .courant-number, .total-contrat  {
     margin-left: 0.6rem;
   }
 
   .dateAndAdd{
   padding: 0 0.5rem;
+  }
+
+  #addBtn {
+    margin-right: 1rem;
+  }
+
+/* ==== ZONE VERTE - MOBILE ==== */
+.courant-list .section-header {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
-#addBtn {
-  margin-right: 1rem;
+.courant-list .filter-controls {
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
 }
+
+.courant-list .filter-controls select {
+  flex: 1;
+  min-width: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

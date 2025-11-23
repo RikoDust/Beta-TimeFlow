@@ -29,4 +29,11 @@ function updateTypeFilterOptions(courant) {
   }
 }
 
-document.getElementById('typeFilter').addEventListener('change', render);
+// trigger render lorsqu'on change le filter
+const typeFilterEl = document.getElementById('typeFilter');
+if (typeFilterEl) {
+  typeFilterEl.addEventListener('change', () => {
+    // appelle la fonction globale render définie dans dataManager.js
+    if (typeof window.render === 'function') window.render();
+  });
+}

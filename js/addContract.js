@@ -5,7 +5,6 @@ const addBtn = document.getElementById('addBtn');
 const cancelBtn = document.getElementById('cancelBtn');
 const saveBtn = document.getElementById('saveBtn');
 
-
 function openModal() {
   modal.classList.remove('hidden');
   appRoot.setAttribute('inert', '');
@@ -29,18 +28,36 @@ saveBtn.onclick = () => {
   const type = document.getElementById('typeInput').value.trim();
   const date = document.getElementById('dateInput').value;
   const preavisRaw = document.getElementById('preavisInput').value.trim();
+  const priorityRaw = document.getElementById('priorityInput') ? document.getElementById('priorityInput').value : '';
   const preavis = Number(preavisRaw);
+  const priority = priorityRaw === '' ? null : Number(priorityRaw);
 
-  if (!prestataire || !type || !date || preavisRaw === '') return alert('Tous les champs sont obligatoires.');
+  // validation
+  if (!prestataire || !type || !date || preavisRaw === '' || priorityRaw === '') {
+    return alert('Tous les champs sont obligatoires (y compris la priorité).');
+  }
   if (isNaN(preavis) || preavis < 0) return alert('Le préavis doit être un nombre positif.');
+  if (![1,2,3].includes(priority)) return alert('La priorité doit être 1, 2 ou 3.');
 
-  contracts.push({ id: Date.now(), prestataire, type, date, preavis: Math.floor(preavis) });
+  // push et sauvegarde
+  contracts.push({
+    id: Date.now(),
+    prestataire,
+    type,
+    date,
+    preavis: Math.floor(preavis),
+    priority
+  });
+
   saveStorage();
   render();
 
+  // reset inputs
   document.getElementById('prestataireInput').value = '';
   document.getElementById('typeInput').value = '';
   document.getElementById('dateInput').value = '';
   document.getElementById('preavisInput').value = '';
+  if (document.getElementById('priorityInput')) document.getElementById('priorityInput').value = '';
+
   closeModal();
 };

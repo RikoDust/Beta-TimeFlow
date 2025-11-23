@@ -23,72 +23,128 @@
     </header>
 
 
+    <!-- DASHBOARD -->
+    <section class="dashboard">
 
-<section class="dashboard">
+      <div class="stat-card danger">
+        <div class="title-stat">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p>Alerte</p>
+        </div>
+        <span class="danger-number">0</span>
+      </div>
+      
 
-  <div class="stat-card danger">
-    <div class="title-stat">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <p>Alerte</p>
-    </div>
-    <span class="danger-number">0</span>
-  </div>
-  
-  <div class="stat-card vigilance">
-    <div class="title-stat">
-        <i class="fa-solid fa-exclamation"></i>
-        <p>Vigilance</p>
-    </div>
-    <span class="vigilance-number">0</span>
-  </div>
-
-  <div class="stat-card courant">
-    <div class="title-stat">
-        <i class="fa-solid fa-check-double"></i>
-        <p>Zone verte</p>
-    </div>
-    <span class="courant-number">0</span>
-  </div>
-
-  <div class="stat-card total">
-    <div class="title-stat">
-        <i class="fa-solid fa-list-ul"></i>
-        <p>Total</p>
-    </div>
-    <span class="total-contrat">0</span>
-  </div>
-
-</section>
+      <div class="stat-card vigilance">
+        <div class="title-stat">
+            <i class="fa-solid fa-exclamation"></i>
+            <p>Vigilance</p>
+        </div>
+        <span class="vigilance-number">0</span>
+      </div>
 
 
-<section class="dateAndAdd">
-  <div class="add-container">
-      <button id="addBtn">+</button>
-      <span class="tooltip">Nouvel ajout</span>
-  </div>
-
-  <div id="date-container"></div>
-
-</section>
+      <div class="stat-card courant">
+        <div class="title-stat">
+            <i class="fa-solid fa-check-double"></i>
+            <p>Zone verte</p>
+        </div>
+        <span class="courant-number">0</span>
+      </div>
 
 
+      <div class="stat-card total">
+        <div class="title-stat">
+            <i class="fa-solid fa-list-ul"></i>
+            <p>Total</p>
+        </div>
+        <span class="total-contrat">0</span>
+      </div>
 
+    </section>
+
+
+    <!-- ADD BUTTON AND DATE -->
+    <section class="dateAndAdd">
+
+      <div class="add-container">
+          <button id="addBtn">+</button>
+          <span class="tooltip">Nouvel ajout</span>
+      </div>
+
+      <div id="date-container"></div>
+
+    </section>
+
+
+
+    <!-- LIST SECTION -->
+
+    <!-- Alerte -->
     <section class="danger">
-      <h2>Alerte</h2>
-      <div></div>
+      <div class="section-header">
+        <h2>Alerte</h2>
+
+        <button class="switch" 
+          role="switch" 
+          aria-checked="false"
+          data-target="danger">
+          <i class="fa-solid fa-calendar-days icon-left" aria-hidden="true"></i>
+          <span class="switch__track">
+          <span class="switch__thumb"></span>
+          </span>
+          <i class="fa-solid fa-list-ol icon-right" aria-hidden="true"></i>
+        </button>
+
+      </div>
+
+      <div id="dangerContracts" class="dangerContracts"></div>
     </section>
 
+
+    <!-- Vigilance -->
     <section class="vigilance">
-      <h2>Vigilance</h2>
-      <div></div>
+      <div class="section-header">
+        <h2>Vigilance</h2>
+
+        <button class="switch" 
+                role="switch" 
+                aria-checked="false"
+                data-target="vigilance">
+          <i class="fa-solid fa-calendar-days icon-left" aria-hidden="true"></i>
+          <span class="switch__track">
+            <span class="switch__thumb"></span>
+          </span>
+          <i class="fa-solid fa-list-ol icon-right" aria-hidden="true"></i>
+        </button>
+
+      </div>
+        
+      <div id="vigilanceContracts" class="vigilanceContracts"></div>
     </section>
 
+    <!-- Zone Verte -->
     <section class="courant-list">
-      <div class="head-courant-list">
-      <h2>Zone verte</h2>
-      <select id="typeFilter" aria-label="Filtrer par type d'échéance">
-        <option value="">-- Tous les types --</option>
-      </select>
+      <div class="section-header">
+        <h2>Zone verte</h2>
+        <div class="filter-controls">
+          <select id="typeFilter" aria-label="Filtrer par type d'échéance">
+            <option value="">-- Tous les types --</option>
+          </select>
+
+          <button class="switch" 
+                  role="switch" 
+                  aria-checked="false"
+                  data-target="courant">
+            <i class="fa-solid fa-calendar-days icon-left" aria-hidden="true"></i>
+            <span class="switch__track">
+              <span class="switch__thumb"></span>
+            </span>
+            <i class="fa-solid fa-list-ol icon-right" aria-hidden="true"></i>
+          </button>
+
+        </div>
+        
       </div>
       <div id="otherContracts" class="contracts-list"></div>
     </section>
@@ -102,7 +158,7 @@
   <footer>   
 
     <div class="contact-footer">
-      <p>Pour tout retour utilisateur, merci de nous écrire a cette adresse : </p>
+      <p>Pour tout retour utilisateur, merci de nous contacter a cette adresse : </p>
       <p><a href="mailto:contact.emdev@gmail.com"><strong>contact.emdev@gmail.com</strong></a></p>
     </div>
 
@@ -115,7 +171,7 @@
 
 
 
-  
+  <!-- MODALS -->
 
   <!-- Modal d'ajout -->
   <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
@@ -126,12 +182,19 @@
       <datalist id="typesList"></datalist>
       <input id="dateInput" type="date" />
       <input id="preavisInput" type="number" placeholder="Délai d'action (jour)" />
+      <select id="priorityInput">
+        <option value="">-- Priorité --</option>
+        <option value="1">1 (Haute)</option>
+        <option value="2">2 (Moyenne)</option>
+        <option value="3">3 (Basse)</option>
+      </select>
       <div class="actions">
         <button id="cancelBtn" type="button">Annuler</button>
         <button id="saveBtn" type="button">Valider</button>
       </div>
     </div>
   </div>
+
 
  <!-- Modal de suppression -->
   <div id="deleteModal" class="hidden modal-overlay">
@@ -149,7 +212,7 @@
 
 
 
-  <!-- script javascript -->
+<!-- script javascript -->
 
 <script src="js/dataManager.js"></script>
 <script src="js/date.js"></script>
