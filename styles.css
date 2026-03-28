@@ -147,6 +147,212 @@ header p{
 
 
 
+
+
+
+
+
+
+
+/*** CALENDRIER 30 JOURS ***/
+
+.calendar-section {
+  margin-bottom: 3rem;
+}
+
+/* Bouton onglet */
+.calendar-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #34495e;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+  transition: box-shadow 0.2s, background 0.2s;
+  width: 100%;
+  justify-content: center;
+}
+
+.calendar-toggle:hover {
+  background: #f4f5f7;
+  box-shadow: 0 4px 12px rgba(2, 6, 23, 0.12);
+}
+
+.calendar-toggle[aria-expanded="true"] {
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 2px 6px rgba(2, 6, 23, 0.08);
+}
+
+.calendar-chevron {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.calendar-toggle[aria-expanded="true"] .calendar-chevron {
+  transform: rotate(180deg);
+}
+
+/* Corps du calendrier (collapse) */
+.calendar-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+  background: #ffffff;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(2, 6, 23, 0.07);
+}
+
+.calendar-body.open {
+  grid-template-rows: 1fr;
+}
+
+.calendar-inner {
+  overflow: hidden;
+}
+
+/* Légende */
+.calendar-legend-row {
+  display: flex;
+  justify-content: flex-end;
+  padding: 14px 16px 8px;
+}
+
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 12px;
+  color: #555;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot.danger    { background: #e74c3c; }
+.legend-dot.vigilance { background: #f39c12; }
+
+/* Grille */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  padding: 0 16px 16px;
+}
+
+.cal-day {
+  position: relative;
+  background: #f4f5f7;
+  border-radius: 8px;
+  padding: 8px 4px 6px;
+  text-align: center;
+  font-size: 13px;
+  min-height: 52px;
+}
+
+.cal-day.today {
+  border: 2px solid #34495e;
+  background: #ffffff;
+}
+
+.cal-day .day-num {
+  font-weight: 600;
+  font-size: 15px;
+  color: #34495e;
+  display: block;
+}
+
+.cal-day .day-label {
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.cal-badge {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.cal-badge.danger    { background: #e74c3c; }
+.cal-badge.vigilance { background: #f39c12; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+
+  .cal-day {
+    min-height: 46px;
+    padding: 6px 2px 4px;
+  }
+
+  .cal-day .day-num { font-size: 13px; }
+  .cal-day .day-label { font-size: 9px; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*** DATE ET BOUTON AJOUT ***/
 
 .dateAndAdd{

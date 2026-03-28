@@ -204,6 +204,11 @@ function render() {
 
   // met à jour les options types pour le select et datalist
   updateTypeFilterOptions(courant);
+
+
+  if (typeof window.renderCalendar === 'function') window.renderCalendar();
+
+
 }
 
 // initial binding des boutons de tri (switch)
