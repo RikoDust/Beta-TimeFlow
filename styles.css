@@ -169,7 +169,7 @@ header p{
   border: none;
   border-radius: 10px;
   padding: 10px 20px;
-  font-size: 1rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #34495e;
   cursor: pointer;
@@ -215,6 +215,9 @@ header p{
 
 .calendar-inner {
   overflow: hidden;
+  background-color: #34495e;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 /* Légende */
@@ -236,6 +239,7 @@ header p{
   display: flex;
   align-items: center;
   gap: 5px;
+  color: #ddd;
 }
 
 .legend-dot {
